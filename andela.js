@@ -11,9 +11,8 @@
 
 // Example usage:
 console.log(areYouPlayingBanjo("Robert")); // Output: "Robert plays banjo"
-console.log(areYouPlayingBanjo("rick"));   // Output: "rick plays banjo"
-console.log(areYouPlayingBanjo("Alice"));  // Output: "Alice does not play banjo"
-
+console.log(areYouPlayingBanjo("rick")); // Output: "rick plays banjo"
+console.log(areYouPlayingBanjo("Alice")); // Output: "Alice does not play banjo"
 
 // QUESTION - 2
 // Create a function with two arguments that will return an array of the first n multiples of x.
@@ -65,7 +64,7 @@ function stringToArray(string) {
 
 stringToArray("Sunday, Aniekan, Bright");
 
-// QUESTION 6 
+// QUESTION 6
 // A hero is on his way to the castle to complete his mission. However, he's been told that the castle is surrounded with a couple of powerful dragons! each dragon takes 2 bullets to be defeated, our hero has no idea how many bullets he should carry.. Assuming he's gonna grab a specific given number of bullets and move forward to fight another specific given number of dragons, will he survive?
 
 // Return true if yes, false otherwise :)
@@ -107,9 +106,9 @@ function doubleInteger(i) {
   return i, i * 2;
 }
 
-doubleInteger(4); 
+doubleInteger(4);
 
-// QUESTION - 9 
+// QUESTION - 9
 // Deoxyribonucleic acid, DNA is the primary information storage molecule in biological systems. It is composed of four nucleic acid bases Guanine ('G'), Cytosine ('C'), Adenine ('A'), and Thymine ('T').
 
 // Ribonucleic acid, RNA, is the primary messenger molecule in cells. RNA differs slightly from DNA its chemical structure and contains no Thymine. In RNA Thymine is replaced by another nucleic acid Uracil ('U').
@@ -205,7 +204,7 @@ function max(list) {
 min([-52, 56, 30, 29, -54, 0, -110]);
 min([42, 54, 65, 87, 0]);
 
-// QUESTION - 12 
+// QUESTION - 12
 // Given a string of digits, you should replace any digit below 5 with '0' and any digit 5 and above with '1'. Return the resulting string.
 
 // Note: input will never be an empty string
@@ -252,3 +251,195 @@ highAndLow("1 2 3 4 5");
 highAndLow("1 2 -3 4 5");
 
 // ANSWER - 16
+// Complete the square sum function so that it squares each number passed into it and then sums the results together.
+
+// ANSWER - 16
+function squareSum(numbers) {
+  return numbers.reduce((sum, num) => sum + num ** 2, 0);
+}
+
+squareSum([1, 2, 3]);
+
+// QUESTION - 17
+// Your task is to write a function which returns the time since midnight in milliseconds.
+
+// ANSWER - 17
+
+function past(h, m, s) {
+  return h * 3600000 + m * 60000 + s * 1000;
+}
+
+past(0, 1, 1); // Output: 61000
+
+// 1 hour = 3600000 milliseconds (1 * 60 * 60 * 1000)
+// 1 minute = 60000 milliseconds (1 * 60 * 1000)
+// 1 second = 1000 milliseconds (1 * 1000)
+
+//QUESTION - 18
+// Create a function that takes an integer as an argument and returns "Even" for even numbers or "Odd" for odd numbers.
+
+// ANSWER - 18
+function evenOrOdd(number) {
+  if (number % 2 === 0) {
+    return "Even";
+  } else {
+    return "Odd";
+  }
+}
+
+evenOrOdd(6);
+evenOrOdd(5);
+
+// QUESTION - 19
+// You like building blocks. You especially like building blocks that are squares. And what you even like more, is to arrange them into a square of square building blocks!
+
+// However, sometimes, you can't arrange them into a square. Instead, you end up with an ordinary rectangle! Those blasted things! If you just had a way to know, whether you're currently working in vain… Wait! That's it! You just have to check if your number of building blocks is a perfect square.
+
+// Task
+// Given an integral number, determine if it's a square number:
+
+// In mathematics, a square number or perfect square is an integer that is the square of an integer; in other words, it is the product of some integer with itself.
+
+// The tests will always use some integral number, so don't worry about that in dynamic typed languages.
+
+// ANSWER - 19
+const isSquare = function (n) {
+  //return false; // fix me
+  if (Number.isInteger(Math.sqrt(n))) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+// or
+
+// const isSquareRoot = (n) => {
+//   return Number.isInteger(Math.sqrt(n));
+// }
+
+isSquare(15);
+isSquare(16);
+
+// QUESTION - 20
+// In a small town the population is p0 = 1000 at the beginning of a year. The population regularly increases by 2 percent per year and moreover 50 new inhabitants per year come to live in the town. How many years does the town need to see its population greater than or equal to p = 1200 inhabitants?
+
+// At the end of the first year there will be:
+// 1000 + 1000 * 0.02 + 50 => 1070 inhabitants
+
+// At the end of the 2nd year there will be:
+// 1070 + 1070 * 0.02 + 50 => 1141 inhabitants (** number of inhabitants is an integer **)
+
+// At the end of the 3rd year there will be:
+// 1141 + 1141 * 0.02 + 50 => 1213
+
+// It will need 3 entire years.
+// More generally given parameters:
+
+// p0, percent, aug (inhabitants coming or leaving each year), p (population to equal or surpass)
+
+// the function nb_year should return n number of entire years needed to get a population greater or equal to p.
+
+// aug is an integer, percent a positive or null floating number, p0 and p are positive integers (> 0)
+
+// ANSWER - 20
+
+function nbYear(p0, percent, aug, p) {
+  // your code
+  let years = 0;
+  while (p0 < p) {
+    p0 = p0 + Math.floor(p0 * (percent / 100) + aug);
+    years++;
+  }
+  return years;
+}
+
+nbYear(nbYear(1000, 2, 50, 1200));
+
+// 1. Initialize years to 0.
+// 2. Use a while loop that runs until p0 (current population) reaches or exceeds p (target population).
+// 3. Each year:
+//Increase p0 by p0 * (percent / 100) (percentage growth) plus aug (additional population).
+//Use Math.floor() to ensure population remains an integer.
+//Increment years.
+// 4. Return the total number of years needed.
+
+// QUESTION - 21
+// Complete the square sum function so that it squares each number passed into it and then sums the results together.
+
+// ANSWER - 21
+function squareSum(numbers) {
+  return numbers.reduce((sum, number) => sum + number * number, 0);
+}
+
+squareSum([9, 3, 2]);
+
+// QUESTION - 22
+// Your task is to make a function that can take any non-negative integer as an argument and return it with its digits in descending order. Essentially, rearrange the digits to create the highest possible number.
+
+// Examples:
+// Input: 42145 Output: 54421
+
+// ANSWER - 22
+
+function descendingOrder(n) {
+  return parseInt(
+    n
+      .toString()
+      .split("")
+      .sort((a, b) => b - a)
+      .join("")
+  );
+}
+
+descendingOrder(783773);
+
+/////////////////////////
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+// export const baseUrl='http://172.20.10.2:3000';
+// export const baseUrl='https://learnlift-backend-1.onrender.com';
+export const baseUrl = "http://104.248.27.149";
+
+// export const baseUrl='http://192.168.88.13:3000';
+// export const BASE_URL = https://learnlift.onrender.com;
+
+export const request = async ({ method, data, endpoint, params }) => {
+  const url = baseUrl + endpoint;
+  const token = await AsyncStorage.getItem("token");
+
+  const response = await axios({
+    method,
+    url,
+    data,
+    params: { ...params },
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+
+  return response;
+};
+
+request({ endpoint: "/students/me", method: "GET" })
+  .then(async (response) => {
+    dispatch(setCurrentUser(response?.data?.data));
+    console.log(response.data);
+    dispatch(setAlert({ success: true, message: response?.data?.message }));
+    await AsyncStorage.setItem("luser", JSON.stringify(response?.data?.data));
+    navigation.navigate("Main");
+  })
+  .catch((error) => {
+    alert(error);
+    if (error?.response?.data?.message) {
+      dispatch(
+        setAlert({ success: false, message: error?.response?.data?.message })
+      );
+    } else {
+      dispatch(setAlert({ success: false, message: error?.message }));
+    }
+  })
+  .finally(() => {
+    dispatch(setLoader(null));
+  });
